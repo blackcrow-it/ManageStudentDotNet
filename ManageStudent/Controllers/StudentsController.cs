@@ -16,6 +16,11 @@ namespace ManageStudent.Controllers
         public StudentsController(ManageStudentContext context)
         {
             _context = context;
+            if (!_context.Student.Any())
+            {
+                _context.Database.EnsureDeleted();
+                _context.Database.EnsureCreated();
+            }
         }
 
         // GET: Students
@@ -32,7 +37,7 @@ namespace ManageStudent.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student
+            var student = await _context.Student.Include(m => m.Marks)
                 .FirstOrDefaultAsync(m => m.RollNumber == id);
             if (student == null)
             {
@@ -115,33 +120,18 @@ namespace ManageStudent.Controllers
             return View(student);
         }
 
-        // GET: Students/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public IActionResult Delete(string rollNumber)
         {
-            if (id == null)
+            var existStudent = _context.Student.Find(rollNumber);
+            if (existStudent == null)
             {
-                return NotFound();
+                //TempData["message"] = "Delete Error";
+                return Json(existStudent);
             }
-
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.RollNumber == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            return View(student);
-        }
-
-        // POST: Students/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var student = await _context.Student.FindAsync(id);
-            _context.Student.Remove(student);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            _context.Student.Remove(existStudent);
+            _context.SaveChanges();
+            //TempData["message"] = "Delete Success";
+            return Json(existStudent);
         }
 
         private bool StudentExists(string id)

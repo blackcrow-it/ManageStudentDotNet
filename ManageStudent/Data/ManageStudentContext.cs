@@ -15,6 +15,11 @@ namespace ManageStudent.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Student>()
+                .HasMany<Mark>(s => s.Marks)
+                .WithOne(m => m.Student)
+                .HasForeignKey(x => x.StudentRollNumber)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Student>().HasData(new Student()
             {
                 RollNumber = "A00001",
@@ -25,15 +30,15 @@ namespace ManageStudent.Models
             new Student()
             {
                 RollNumber = "A00002",
-                FirstName = "Hung",
-                LastName = "Nguyen",
+                FirstName = "Hai",
+                LastName = "Ngoc",
                 Email = "quanghungleo@gmail.com"
             },
             new Student()
             {
                 RollNumber = "A00003",
-                FirstName = "Hung",
-                LastName = "Nguyen",
+                FirstName = "Van",
+                LastName = "Vien",
                 Email = "quanghungleo@gmail.com"
             }
             );
@@ -42,21 +47,21 @@ namespace ManageStudent.Models
                 {
                     Id = 1,
                     SubjectName = "Java",
-                    SubjectRollNumber = "A00001",
+                    StudentRollNumber = "A00001",
                     SubjectMark = 24
                 },
                 new Mark()
                 {
                     Id = 2,
                     SubjectName = "C#",
-                    SubjectRollNumber = "A00001",
+                    StudentRollNumber = "A00001",
                     SubjectMark = 23
                 },
                 new Mark()
                 {
                     Id = 3,
                     SubjectName = "Python",
-                    SubjectRollNumber = "A00001",
+                    StudentRollNumber = "A00001",
                     SubjectMark = 27
                 }
 

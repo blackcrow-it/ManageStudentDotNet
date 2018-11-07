@@ -31,8 +31,6 @@ namespace ManageStudent.Migrations
 
                     b.Property<string>("SubjectName");
 
-                    b.Property<string>("SubjectRollNumber");
-
                     b.HasKey("Id");
 
                     b.HasIndex("StudentRollNumber");
@@ -40,9 +38,9 @@ namespace ManageStudent.Migrations
                     b.ToTable("Mark");
 
                     b.HasData(
-                        new { Id = 1, SubjectMark = 24, SubjectName = "Java", SubjectRollNumber = "A00001" },
-                        new { Id = 2, SubjectMark = 23, SubjectName = "C#", SubjectRollNumber = "A00001" },
-                        new { Id = 3, SubjectMark = 27, SubjectName = "Python", SubjectRollNumber = "A00001" }
+                        new { Id = 1, StudentRollNumber = "A00001", SubjectMark = 24, SubjectName = "Java" },
+                        new { Id = 2, StudentRollNumber = "A00001", SubjectMark = 23, SubjectName = "C#" },
+                        new { Id = 3, StudentRollNumber = "A00001", SubjectMark = 27, SubjectName = "Python" }
                     );
                 });
 
@@ -70,9 +68,9 @@ namespace ManageStudent.Migrations
                     b.ToTable("Student");
 
                     b.HasData(
-                        new { RollNumber = "A00001", CreatedAt = new DateTime(2018, 11, 6, 18, 33, 52, 501, DateTimeKind.Local), Email = "quanghungleo@gmail.com", FirstName = "Hung", Gender = 1, LastName = "Nguyen", Status = 1, UpdatedAt = new DateTime(2018, 11, 6, 18, 33, 52, 503, DateTimeKind.Local) },
-                        new { RollNumber = "A00002", CreatedAt = new DateTime(2018, 11, 6, 18, 33, 52, 504, DateTimeKind.Local), Email = "quanghungleo@gmail.com", FirstName = "Hung", Gender = 1, LastName = "Nguyen", Status = 1, UpdatedAt = new DateTime(2018, 11, 6, 18, 33, 52, 504, DateTimeKind.Local) },
-                        new { RollNumber = "A00003", CreatedAt = new DateTime(2018, 11, 6, 18, 33, 52, 504, DateTimeKind.Local), Email = "quanghungleo@gmail.com", FirstName = "Hung", Gender = 1, LastName = "Nguyen", Status = 1, UpdatedAt = new DateTime(2018, 11, 6, 18, 33, 52, 504, DateTimeKind.Local) }
+                        new { RollNumber = "A00001", CreatedAt = new DateTime(2018, 11, 6, 19, 16, 51, 375, DateTimeKind.Local), Email = "quanghungleo@gmail.com", FirstName = "Hung", Gender = 1, LastName = "Nguyen", Status = 1, UpdatedAt = new DateTime(2018, 11, 6, 19, 16, 51, 380, DateTimeKind.Local) },
+                        new { RollNumber = "A00002", CreatedAt = new DateTime(2018, 11, 6, 19, 16, 51, 381, DateTimeKind.Local), Email = "quanghungleo@gmail.com", FirstName = "Hung", Gender = 1, LastName = "Nguyen", Status = 1, UpdatedAt = new DateTime(2018, 11, 6, 19, 16, 51, 381, DateTimeKind.Local) },
+                        new { RollNumber = "A00003", CreatedAt = new DateTime(2018, 11, 6, 19, 16, 51, 381, DateTimeKind.Local), Email = "quanghungleo@gmail.com", FirstName = "Hung", Gender = 1, LastName = "Nguyen", Status = 1, UpdatedAt = new DateTime(2018, 11, 6, 19, 16, 51, 381, DateTimeKind.Local) }
                     );
                 });
 

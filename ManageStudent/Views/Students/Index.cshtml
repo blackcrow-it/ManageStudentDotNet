@@ -3,69 +3,73 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="card">
+    <div class="header">
+        <h2>Index</h2>
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RollNumber">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RollNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RollNumber">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <p class="header-dropdown">
+            <a asp-action="Create" class="btn bg-light-green waves-effect">
+                <i class="material-icons">playlist_add</i> <span> Create New</span>
+            </a>
+        </p>
+    </div>
+    <div class="body table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @*<input type="checkbox" id="checkbox_all" class="filled-in chk-col-red">
+                        <label for="checkbox_all"></label>*@
+                    </th>
+                    @*<th>
+                        #
+                    </th>*@
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        Handle
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="checkbox_@item.RollNumber" class="filled-in chk-col-red">
+                            <label for="checkbox_@item.RollNumber"></label>
+                        </td>
+                        @*<td>@item.</td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.RollNumber" class="btn bg-green btn-xs waves-effect">
+                                Edit
+                            </a> |
+                            <a asp-action="Details" asp-route-id="@item.RollNumber" class="btn bg-cyan btn-xs waves-effect">
+                                Details
+                            </a> |
+                            <a href="#" id="@item.RollNumber" class="btnDeleteClick btn bg-red btn-xs waves-effect">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
